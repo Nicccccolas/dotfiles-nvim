@@ -1,5 +1,11 @@
 return {
 
+  -- Tmux navigator
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+
   -- Messages, cmdline and the popumenu
   {
     "folke/noice.nvim",
@@ -36,6 +42,7 @@ return {
           opts = { enter = true, format = "details" },
           filter = {},
         },
+        e,
       }
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
