@@ -1,5 +1,17 @@
 return {
 
+  -- markdown - Install with yarn or npm
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+
   -- Tmux navigator
   {
     "christoomey/vim-tmux-navigator",
@@ -42,11 +54,11 @@ return {
           opts = { enter = true, format = "details" },
           filter = {},
         },
-        e,
       }
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "markdown",
-        callback = function()
+        callback = function(event)
           vim.schedule(function()
             require("noice.text.markdown").keys(event.buf)
           end)
@@ -120,6 +132,20 @@ return {
         show_buffer_close_icons = false,
         show_close_icon = false,
       },
+    },
+  },
+
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    opts = {
+
+      plugins = {
+        gitsigns = true,
+        tmux = true,
+        alacritty = { enabled = false, font = "12" },
+      },
+      keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "ZenMode" } },
     },
   },
 
